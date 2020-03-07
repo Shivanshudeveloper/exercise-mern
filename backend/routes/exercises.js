@@ -1,11 +1,21 @@
 const router = require('express').Router();
 const Exercise = require('../models/Exercise_Model');
 
-router.route('/').get((req, res) => {
-    Exercise.find()
-        .then(exercise => res.json(exercise))
-        .catch(err => res.status(400).json('Error: ' + err))
+// Bring a Middleware
+const auth = require("../middleware/auth");
+
+
+router.get('/', auth, (req, res) => {
+  Exercise.find()
+  .then(exercise => res.json(exercise))
+  .catch(err => res.status(400).json('Error: ' + err))
 });
+
+// router.route('/').get((req, res) => {
+//     Exercise.find()
+//         .then(exercise => res.json(exercise))
+//         .catch(err => res.status(400).json('Error: ' + err))
+// });
 
 
 router.route('/add').post((req, res) => {
