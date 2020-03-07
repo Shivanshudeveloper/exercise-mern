@@ -1,0 +1,17 @@
+version: '3'
+services: 
+    mernbackend:
+        container_name: mern-backend
+        restart: always
+        build: .
+        ports:
+            - '3001:3001'
+        volumes: ['./:/usr/src/app']
+        links:
+            - mongo
+
+    mongo:
+        container_name: mern-mongo
+        image: mongo
+        ports: 
+            - '27017:27017'

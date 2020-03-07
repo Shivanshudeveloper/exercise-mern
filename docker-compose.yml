@@ -1,0 +1,12 @@
+version: '3'
+services: 
+    mernfrontend:
+        container_name: mern-frontend
+        restart: always
+        build: .
+        ports:
+            - '3000:3000'
+        volumes: ['./:/usr/src/app']
+        
+        
+    
